@@ -1,0 +1,3 @@
+[submodule "Glue/vendor/spdlog"]
+	path = Glue/vendor/spdlog
+	url = https://github.com/gabime/spdlog
