@@ -5,7 +5,10 @@
 
 	int main(int argc, char* argv[])
 	{
-		printf("[GLUE ENGINE v0.1a]\n");
+		Glue::Log::Init();
+		GLUE_CORE_WARN("Log Initialized!");
+		GLUE_INFO("Hello from client!");
+
 		auto app = Glue::CreateApplication();
 		app->Run();
 		delete app;
