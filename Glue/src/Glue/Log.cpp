@@ -1,3 +1,4 @@
+#include "gluepch.h"
 #include "Log.h"
 
 namespace Glue

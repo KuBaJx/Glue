@@ -1,8 +1,8 @@
 #pragma once
 
-#include <memory>
 #include "Core.h"
 #include "spdlog/spdlog.h"
+#include "spdlog/fmt/fmt.h"
 #include "spdlog/sinks/stdout_color_sinks.h"
 
 namespace Glue {
@@ -23,8 +23,8 @@ namespace Glue {
 // ... in defines means variable count of args
 // :: prefix means global scope
 #define GLUE_CORE_TRACE(...)	::Glue::Log::GetCoreLogger()->trace(__VA_ARGS__)
-#define GLUE_CORE_INFO(...)	::Glue::Log::GetCoreLogger()->info(__VA_ARGS__)
-#define GLUE_CORE_WARN(...)	::Glue::Log::GetCoreLogger()->warn(__VA_ARGS__)
+#define GLUE_CORE_INFO(...)		::Glue::Log::GetCoreLogger()->info(__VA_ARGS__)
+#define GLUE_CORE_WARN(...)		::Glue::Log::GetCoreLogger()->warn(__VA_ARGS__)
 #define GLUE_CORE_ERROR(...)	::Glue::Log::GetCoreLogger()->error(__VA_ARGS__)
 #define GLUE_CORE_FATAL(...)	::Glue::Log::GetCoreLogger()->fatal(__VA_ARGS__)
 

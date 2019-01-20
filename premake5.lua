@@ -11,6 +11,11 @@ workspace "Glue"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+IncludeDir = {}
+IncludeDir["GLFW"] = "Glue/vendor/GLFW/include"
+
+include "Glue/vendor/GLFW"
+
 project "Glue"
 	location "Glue"
 	kind "SharedLib"
@@ -18,6 +23,9 @@ project "Glue"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	pchheader "gluepch.h"
+	pchsource "Glue/src/gluepch.cpp"
 
 	files
 	{
@@ -28,7 +36,14 @@ project "Glue"
 	includedirs
 	{
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links
+	{
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"
