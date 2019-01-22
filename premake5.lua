@@ -13,8 +13,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["GLFW"] = "Glue/vendor/GLFW/include"
+IncludeDir["Glad"] = "Glue/vendor/Glad/include"
 
 include "Glue/vendor/GLFW"
+include "Glue/vendor/Glad"
 
 project "Glue"
 	location "Glue"
@@ -37,12 +39,14 @@ project "Glue"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}"
 	}
 
 	links
 	{
 		"GLFW",
+		"Glad",
 		"opengl32.lib"
 	}
 
@@ -54,7 +58,8 @@ project "Glue"
 		defines
 		{
 			"GLUE_PLATFORM_WINDOWS",
-			"GLUE_BUILD_DLL"
+			"GLUE_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands
@@ -64,14 +69,17 @@ project "Glue"
 
 	filter "configurations:Debug"
 		defines "GLUE_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "GLUE_RELEASE"
+		buildoptions "/MDd"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "GLUE_DIST"
+		buildoptions "/MDd"
 		symbols "On"
 
 project "Sandbox"
@@ -111,12 +119,15 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "GLUE_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "GLUE_RELEASE"
+		buildoptions "/MDd"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "GLUE_DIST"
+		buildoptions "/MDd"		
 		optimize "On"

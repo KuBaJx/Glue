@@ -37,6 +37,12 @@
     <ClInclude Include="src\Glue\Events\MouseEvent.h">
       <Filter>Glue\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Glue\Layer.h">
+      <Filter>Glue</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Glue\LayerStack.h">
+      <Filter>Glue</Filter>
+    </ClInclude>
     <ClInclude Include="src\Glue\Log.h">
       <Filter>Glue</Filter>
     </ClInclude>
@@ -50,6 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Glue\Application.cpp">
+      <Filter>Glue</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Glue\Layer.cpp">
+      <Filter>Glue</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Glue\LayerStack.cpp">
       <Filter>Glue</Filter>
     </ClCompile>
     <ClCompile Include="src\Glue\Log.cpp">
