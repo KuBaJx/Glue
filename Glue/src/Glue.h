@@ -5,5 +5,8 @@
 #include "Glue/Application.h"
 #include "Glue/Layer.h"
 #include "Glue/Log.h"
+
+#include "Glue/ImGui/ImGuiLayer.h"
+
 // ----- ENTRY POINT ---- //
 #include "Glue/EntryPoint.h"
