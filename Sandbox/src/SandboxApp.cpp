@@ -10,7 +10,7 @@ public:
 
 	void OnUpdate() override
 	{
-		GLUE_INFO("ExampleLayer::Update");
+		//GLUE_INFO("ExampleLayer::Update");
 	}
 
 	void OnEvent(Glue::Event& e) override
