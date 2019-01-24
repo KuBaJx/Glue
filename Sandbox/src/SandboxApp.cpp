@@ -15,7 +15,7 @@ public:
 
 	void OnEvent(Glue::Event& e) override
 	{
-		GLUE_TRACE("{0}", e.ToString());
+		GLUE_TRACE("{0}", e);
 	}
 };
 

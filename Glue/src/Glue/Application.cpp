@@ -42,7 +42,7 @@ namespace Glue {
 		// If event matches WindowCloseEvent (Checking template) then we'll call OnWindowClosed function
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClosed));
 
-		GLUE_CORE_TRACE("{0}", e.ToString());
+		GLUE_CORE_TRACE("{0}", e);
 
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
 		{
