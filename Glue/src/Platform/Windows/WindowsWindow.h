@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Glue/Window.h"
+#include <Glue/Window.h>
 
 #include <GLFW/glfw3.h>
 
@@ -21,6 +21,8 @@ namespace Glue
 		inline void SetEventCallback(const EventCallbackFn& callback) override { m_Data.EventCallback = callback; }
 		void SetVSync(bool enabled) override;
 		bool IsVSync() const override;
+
+		inline void* GetNativeWindow() const override { return m_Window; };
 
 	private:
 		virtual void Init(const WindowProperties& props);

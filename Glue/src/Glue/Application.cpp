@@ -3,6 +3,8 @@
 
 #include <glad/glad.h>
 
+#include "Input.h"
+
 namespace Glue {
 
 
@@ -58,13 +60,16 @@ namespace Glue {
 	{
 		while (m_Running)
 		{
-			glClearColor(1, 1, 1, 1);
+			glClearColor(0, 0, 0, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			for (Layer* layer : m_LayerStack)
 			{
 				layer->OnUpdate();
 			}
+
+			auto[x, y] = Input::GetMouseXY();
+			GLUE_CORE_TRACE("{0}, {1}", x, y);
 
 			m_Window->OnUpdate();
 		}
