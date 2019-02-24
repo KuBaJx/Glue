@@ -1,21 +1,26 @@
 #include <Glue.h>
 
+
 class ExampleLayer : public Glue::Layer
 {
 public:
 	ExampleLayer()
 		: Layer("Example")
 	{
+
 	}
 
 	void OnUpdate() override
 	{
-		//GLUE_INFO("ExampleLayer::Update");
+		if (Glue::Input::IsKeyPressed(GLUE_KEY_TAB))
+		{
+			GLUE_INFO("Tab was pressed!");
+		}
 	}
 
 	void OnEvent(Glue::Event& e) override
 	{
-		GLUE_TRACE("{0}", e.ToString());
+		GLUE_TRACE("{0}", e);
 	}
 };
 

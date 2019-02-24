@@ -31,6 +31,9 @@ namespace Glue
 		bool OnKeyTypedEvent(KeyTypedEvent& e);
 
 		bool OnWindowResizeEvent(WindowResizeEvent& e);
+
 		float m_Time = 0;
+		bool m_Show = true;
+
 	};
 }

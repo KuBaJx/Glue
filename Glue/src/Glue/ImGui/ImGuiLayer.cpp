@@ -78,8 +78,7 @@ namespace Glue
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui::NewFrame();
 		
-		static bool show = true;
-		ImGui::ShowDemoWindow(&show);
+		ImGui::ShowDemoWindow(&m_Show);
 
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

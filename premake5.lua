@@ -15,6 +15,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Glue/vendor/GLFW/include"
 IncludeDir["Glad"] = "Glue/vendor/Glad/include"
 IncludeDir["ImGui"] = "Glue/vendor/imgui"
+IncludeDir["glm"] = "Glue/vendor/glm"
 
 include "Glue/vendor/GLFW"
 include "Glue/vendor/Glad"
@@ -34,7 +35,9 @@ project "Glue"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
 
 	includedirs
@@ -43,7 +46,8 @@ project "Glue"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
 	links
@@ -63,6 +67,7 @@ project "Glue"
 		{
 			"GLUE_PLATFORM_WINDOWS",
 			"GLUE_BUILD_DLL",
+			"GLUE_ENABLE_ASSERTS",
 			"GLFW_INCLUDE_NONE"
 		}
 
@@ -103,6 +108,7 @@ project "Sandbox"
 	includedirs
 	{
 		"Glue/vendor/spdlog/include",
+		"%{IncludeDir.glm}",
 		"Glue/src"
 	}
 
