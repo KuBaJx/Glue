@@ -7,3 +7,6 @@
 [submodule "Glue/vendor/imgui"]
 	path = Glue/vendor/imgui
 	url = https://github.com/TheCherno/imgui
+[submodule "Glue/vendor/glm"]
+	path = Glue/vendor/glm
+	url = https://github.com/g-truc/glm
