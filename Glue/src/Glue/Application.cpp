@@ -4,7 +4,6 @@
 #include <glad/glad.h>
 
 #include "Input.h"
-#include "ImGui/ImGuiLayer.h"
 
 namespace Glue {
 
@@ -45,10 +44,7 @@ namespace Glue {
 		// If event matches WindowCloseEvent (Checking template) then we'll call OnWindowClosed function
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClosed));
 
-		//auto close = std::bind(&Application::OnWindowClosed, this, std::placeholders::_1);
-		//dispatcher.Dispatch<WindowCloseEvent>(close);
-
-		GLUE_CORE_TRACE("{0}", e.ToString());
+		GLUE_CORE_TRACE("{0}", e);
 
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
 		{
@@ -64,8 +60,6 @@ namespace Glue {
 	{
 		while (m_Running)
 		{
-			auto[x, y] = Input::GetMouseXY();
-
 			glClearColor(0, 0, 0, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 
@@ -73,8 +67,9 @@ namespace Glue {
 			{
 				layer->OnUpdate();
 			}
-		
-			//GLUE_CORE_TRACE("{0}, {1}", x, y);
+
+			auto[x, y] = Input::GetMouseXY();
+			GLUE_CORE_TRACE("{0}, {1}", x, y);
 
 			m_Window->OnUpdate();
 		}

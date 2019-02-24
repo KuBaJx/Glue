@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "Glue/Core.h"
 #include "Glue/Events/Event.h"
 
