@@ -108,6 +108,7 @@ project "Sandbox"
 	includedirs
 	{
 		"Glue/vendor/spdlog/include",
+		"Glue/vendor/imgui",
 		"%{IncludeDir.glm}",
 		"Glue/src"
 	}
