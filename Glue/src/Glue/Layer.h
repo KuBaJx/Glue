@@ -2,10 +2,11 @@
 
 #include "Glue/Core.h"
 #include "Glue/Events/Event.h"
+#include "Core/Timestep.h"
 
 namespace Glue
 {
-	class GLUE_API Layer
+	class Layer
 	{
 	public:
 		Layer(const std::string& name = "Layer");
@@ -13,8 +14,8 @@ namespace Glue
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
-		virtual void OnImGuiRender() {}
+		virtual void OnUpdate(Timestep deltaTime) {}
+		virtual void OnImGuiRender(Timestep deltaTime) {}
 		virtual void OnEvent(Event& e) {}
 
 		inline const std::string& GetName() const { return m_DebugName; };

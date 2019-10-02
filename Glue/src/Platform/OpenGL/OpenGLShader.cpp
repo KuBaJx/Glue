@@ -3,6 +3,8 @@
 
 #include <glad/glad.h>
 
+#include <glm/gtc/type_ptr.hpp>
+
 namespace Glue
 {
 	OpenGLShader::OpenGLShader(const char* vertexPath, const char* fragmentPath)
@@ -108,6 +110,11 @@ namespace Glue
 	void OpenGLShader::SetUniform4f(const std::string& name, float v1, float v2, float v3, float va)
 	{
 		glUniform4f(GetUniformLocation(name), v1, v2, v3, va);;
+	}
+
+	void OpenGLShader::SetUniformMat4(const std::string& name, const glm::mat4& matrix)
+	{
+		glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, glm::value_ptr(matrix));
 	}
 
 	uint32_t OpenGLShader::GetUniformLocation(const std::string& name)

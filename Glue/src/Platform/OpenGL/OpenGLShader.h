@@ -2,6 +2,8 @@
 
 #include "Glue/Renderer/Shader.h"
 
+#include <glm/glm.hpp>
+
 namespace Glue
 {
 	class OpenGLShader : public Shader
@@ -14,6 +16,7 @@ namespace Glue
 		virtual void Unbind() const override;
 		virtual void SetUniform1f(const std::string& name, float value) override;
 		virtual void SetUniform4f(const std::string& name, float v1, float v2, float v3, float va) override;
+		virtual void SetUniformMat4(const std::string& name, const glm::mat4& matrix) override;
 
 		uint32_t GetUniformLocation(const std::string& name);
 

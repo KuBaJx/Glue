@@ -71,7 +71,7 @@ namespace Glue
 	{
 		ImGuiIO& io = ImGui::GetIO();
 		Application& app = Application::Get();
-		io.DisplaySize = ImVec2(app.GetWindow().GetWidth(), app.GetWindow().GetHeight());
+		io.DisplaySize = ImVec2(static_cast<float>(app.GetWindow().GetWidth()), static_cast<float>(app.GetWindow().GetHeight()));
 
 		// Rendering
 		ImGui::Render();
@@ -86,9 +86,8 @@ namespace Glue
 		}
 	}
 
-	void ImGuiLayer::OnImGuiRender()
+	void ImGuiLayer::OnImGuiRender(Timestep deltaTime)
 	{
-		static bool show = true;
-		ImGui::ShowDemoWindow(&show);
+
 	}
 }

@@ -5,7 +5,7 @@
 #include "spdlog/fmt/ostr.h"
 
 namespace Glue {
-	class GLUE_API Log
+	class Log
 	{
 	public:
 		static void Init();

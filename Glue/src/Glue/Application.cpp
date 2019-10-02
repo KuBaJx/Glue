@@ -1,9 +1,7 @@
 #include "gluepch.h"
 #include "Application.h"
 
-#include <glad/glad.h>
-
-#include "Input.h"
+#include <GLFW/glfw3.h>
 
 namespace Glue {
 
@@ -17,7 +15,7 @@ namespace Glue {
 		GLUE_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
 
-		m_Window = std::unique_ptr<Window>(Window::Create());
+		m_Window.reset(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 
 		m_ImGuiLayer = new ImGuiLayer();
@@ -26,6 +24,7 @@ namespace Glue {
 
 	Application::~Application()
 	{
+		
 	}
 
 	void Application::PushLayer(Layer* layer)
@@ -47,8 +46,6 @@ namespace Glue {
 		// If event matches WindowCloseEvent (Checking template) then we'll call OnWindowClosed function
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClosed));
 
-		GLUE_CORE_TRACE("{0}", e);
-
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
 		{
 			(*--it)->OnEvent(e);
@@ -63,18 +60,20 @@ namespace Glue {
 	{
 		while (m_Running)
 		{
-			glClearColor(0, 0, 0, 1);
-			glClear(GL_COLOR_BUFFER_BIT);
-
+			//LARGE_INTEGER val = {};
+			//float time = QueryPerformanceCounter(&val);
+			float time = static_cast<float>(glfwGetTime());
+			Timestep deltaTime = time - m_LastFrameTime;
+			m_LastFrameTime = time;
+			
 			for (Layer* layer : m_LayerStack)
 			{
-				layer->OnUpdate();
-				//layer->OnImGuiRender();
+				layer->OnUpdate(deltaTime);
 			}
 			m_ImGuiLayer->Begin();
 			for (Layer* layer : m_LayerStack)
 			{
-				layer->OnImGuiRender();
+				layer->OnImGuiRender(deltaTime);
 			}
 			m_ImGuiLayer->End();
 

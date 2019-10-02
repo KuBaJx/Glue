@@ -6,10 +6,11 @@
 #include "Glue/Events/KeyEvent.h"
 #include "Glue/Events/MouseEvent.h"
 
+#include "Glue/Core/Timestep.h"
 
 namespace Glue
 {
-	class GLUE_API ImGuiLayer : public Layer
+	class ImGuiLayer : public Layer
 	{
 	public:
 		ImGuiLayer();
@@ -17,7 +18,7 @@ namespace Glue
 
 		virtual void OnAttach() override;
 		virtual void OnDetach() override;
-		virtual void OnImGuiRender() override;
+		virtual void OnImGuiRender(Timestep deltaTime) override;
 
 		void Begin();
 		void End();

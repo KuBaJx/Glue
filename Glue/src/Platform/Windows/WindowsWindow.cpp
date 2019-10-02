@@ -6,7 +6,7 @@
 #include "Glue/Events/KeyEvent.h"
 #include "Glue/Events/MouseEvent.h"
 
-#include <glad/glad.h>
+#include "Platform/OpenGL/OpenGLContext.h"
 
 namespace Glue
 {
@@ -50,10 +50,9 @@ namespace Glue
 		}
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, props.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
-		// Glad init
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		GLUE_CORE_ASSERT(status, "Failed to intialize Glad!");
+
+		m_Context = new OpenGLContext(m_Window);
+		m_Context->Init();
 
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
@@ -139,7 +138,7 @@ namespace Glue
 		glfwSetScrollCallback(m_Window, [](GLFWwindow* window, double xOffset, double yOffset) 
 		{
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-			MouseScrolledEvent event(xOffset, yOffset);
+			MouseScrolledEvent event(static_cast<float>(xOffset), static_cast<float>(yOffset));
 			data.EventCallback(event);
 		});
 
@@ -160,7 +159,7 @@ namespace Glue
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)

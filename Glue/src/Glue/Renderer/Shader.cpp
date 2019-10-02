@@ -11,12 +11,12 @@ namespace Glue
 	{
 		switch (Renderer::GetRendererAPI())
 		{
-		case RendererAPI::None:
+		case RendererAPI::API::None:
 		{
 			GLUE_CORE_ASSERT(false, "RendererAPI::None is not supported!");
 			return nullptr;
 		}
-		case RendererAPI::OpenGL:
+		case RendererAPI::API::OpenGL:
 		{
 			return new OpenGLShader(vertexPath, fragmentPath);
 		}

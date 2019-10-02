@@ -1,11 +1,15 @@
 #pragma once
 
 #ifdef GLUE_PLATFORM_WINDOWS
+#if GLUE_DYNAMIC_LINK
 	#ifdef GLUE_BUILD_DLL
-		#define GLUE_API  __declspec(dllexport)
+		#define  __declspec(dllexport)
 	#else
-		#define GLUE_API __declspec(dllimport)
+		#define __declspec(dllimport)
 	#endif
+#else
+	#define GLUE_API
+#endif
 #else
 	#error Glue currently supports Windows only!
 #endif
@@ -21,3 +25,6 @@
 #define BIT(x) (1 << x)
 
 #define GLUE_BIND_EVENT_FN(x) std::bind(&x, this, std::placeholders::_1)
+
+typedef unsigned int uint;
+typedef unsigned char byte;

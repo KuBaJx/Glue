@@ -7,7 +7,7 @@
 
 namespace Glue
 {
-	class GLUE_API LayerStack
+	class LayerStack
 	{
 	public:
 		LayerStack();

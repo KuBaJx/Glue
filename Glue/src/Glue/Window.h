@@ -22,10 +22,10 @@ namespace Glue
 	};
 
 
-	class GLUE_API Window
+	class Window
 	{
 	public:
-		using EventCallbackFn = std::function<void(Event&)>;
+		typedef std::function<void(Event&)> EventCallbackFn;
 
 		virtual ~Window() {}
 
