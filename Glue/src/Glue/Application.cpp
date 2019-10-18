@@ -45,6 +45,7 @@ namespace Glue {
 
 		// If event matches WindowCloseEvent (Checking template) then we'll call OnWindowClosed function
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClosed));
+		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResized));
 
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
 		{
@@ -79,6 +80,13 @@ namespace Glue {
 
 			m_Window->OnUpdate();
 		}
+	}
+
+	bool Application::OnWindowResized(WindowResizeEvent& e)
+	{
+		GLUE_CORE_INFO("Window resized! X: {0} Y: {1}\n", e.GetWidth(), e.GetHeight());
+		m_Window->OnResize(e.GetWidth(), e.GetHeight());
+		return true;
 	}
 
 	bool Application::OnWindowClosed(WindowCloseEvent& e)

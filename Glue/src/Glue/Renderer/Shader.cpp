@@ -11,15 +11,23 @@ namespace Glue
 	{
 		switch (Renderer::GetRendererAPI())
 		{
-		case RendererAPI::API::None:
-		{
-			GLUE_CORE_ASSERT(false, "RendererAPI::None is not supported!");
-			return nullptr;
+			case RendererAPI::API::None:
+			{
+				GLUE_CORE_ASSERT(false, "RendererAPI::None is not supported!");
+				return nullptr;
+			}
+			case RendererAPI::API::OpenGL:
+			{
+				return new OpenGLShader(vertexPath, fragmentPath);
+			}
+			case RendererAPI::API::DirectX:
+			{
+				GLUE_CORE_ASSERT(false, "RendererAPI::DirectX is not supported!");
+				return nullptr;
+			}
 		}
-		case RendererAPI::API::OpenGL:
-		{
-			return new OpenGLShader(vertexPath, fragmentPath);
-		}
-		}
+
+		GLUE_CORE_ASSERT(false, "Unknown RendererAPI!");
+		return nullptr;
 	}
 }

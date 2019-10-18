@@ -8,6 +8,8 @@
 
 #include "Platform/OpenGL/OpenGLContext.h"
 
+#include <glad/glad.h>
+
 namespace Glue
 {
 	static bool s_GLFWInitialized = false;
@@ -142,6 +144,14 @@ namespace Glue
 			data.EventCallback(event);
 		});
 
+		// Window resize callback
+		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int x, int y)
+		{
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+			WindowResizeEvent event(x, y);
+			data.EventCallback(event);
+		});
+
 		// Cursor callback
 		glfwSetCursorPosCallback(m_Window, [](GLFWwindow* window, double xPos, double yPos) 
 		{
@@ -160,6 +170,12 @@ namespace Glue
 	{
 		glfwPollEvents();
 		m_Context->SwapBuffers();
+	}
+
+	void WindowsWindow::OnResize(int x, int y)
+	{
+		glfwSetWindowSize(m_Window, x, y);
+		glViewport(0, 0, x, y);
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)

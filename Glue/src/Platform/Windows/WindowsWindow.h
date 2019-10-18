@@ -15,6 +15,8 @@ namespace Glue
 
 		virtual void OnUpdate() override;
 
+		void OnResize(int x, int y) override;
+
 		virtual inline unsigned int GetWidth() const override { return m_Data.Width; }
 		virtual inline unsigned int GetHeight() const override { return m_Data.Height; }
 

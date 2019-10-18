@@ -1,5 +1,7 @@
 #include <Glue.h>
 
+#include <array>
+
 #include "imgui.h"
 
 class DebugLayer : public Glue::Layer
@@ -11,7 +13,7 @@ public:
 		m_VertexArray.reset(Glue::VertexArray::Create());
 
 		m_Colors = { 0.0f, 0.0f, 0.0f };
-
+		
 		float vertices[3 * 7] = {
 		-0.5f, -0.5f, 0.0f, 1.0f, 0.2f, 0.8f, 1.0f,
 		 0.5f, -0.5f, 0.0f, 0.8f, 0.8f, 0.8f, 1.0f,
@@ -41,7 +43,6 @@ public:
 		m_MousePos = ImGui::GetIO().MousePos;
 		
 		glm::vec3 normalized = glm::normalize(glm::vec3(m_Colors.at(0), m_Colors.at(1), m_Colors.at(2)));
-
 		// KeyPress handling
 		if(Glue::Input::IsKeyPressed(GLUE_KEY_A))
 		{
@@ -106,6 +107,7 @@ private:
 	ImVec2 m_MousePos;
 
 	std::array<float, 3> m_Colors;
+	
 	std::shared_ptr<Glue::VertexArray> m_VertexArray;
 	std::shared_ptr<Glue::Shader> m_Shader;
 	// Camera
